@@ -81,7 +81,7 @@
                     <th>Tanggal & Waktu</th>
                     <th>Status</th>
                     @if(Auth::user()->role_id == 1 or Auth::user()->role_id == 2)
-                    <th><center>Action</center></th>
+                    <th><center>Actions</center></th>
                     @endif
                   </tr>  
                 </thead>
