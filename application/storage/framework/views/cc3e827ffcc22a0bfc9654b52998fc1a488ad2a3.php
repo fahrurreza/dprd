@@ -81,7 +81,7 @@
                     <th>Tanggal & Waktu</th>
                     <th>Status</th>
                     <?php if(Auth::user()->role_id == 1 or Auth::user()->role_id == 2): ?>
-                    <th><center>Action</center></th>
+                    <th><center>Actions</center></th>
                     <?php endif; ?>
                   </tr>  
                 </thead>
@@ -145,6 +145,18 @@
     }
 
     function editRapat(id){
+
+      document.getElementById("tgl_rapat").disabled = false;
+      document.getElementById("waktu_rapat").disabled = false;
+      document.getElementById("sifat_rapat").disabled = false;
+      document.getElementById("nama_rapat").disabled = false;
+      document.getElementById("tgl_rapat").disabled = false;
+      document.getElementById("waktu_rapat").disabled = false;
+      document.getElementById("sifat_rapat").disabled = false;
+      document.getElementById("acara_rapat").disabled = false;
+      document.getElementById("ruangan_id").disabled = false;
+      document.getElementById("peserta_rapat").disabled = false;
+
       $("#submit_rapat").removeClass("d-none");
       $("#form-create-rapat").removeClass("d-none");
 
@@ -196,7 +208,7 @@
             document.getElementById("waktu_rapat").value = time(data.waktu);
             document.getElementById("ruangan_id").value = data.ruangan_id;
             $('#peserta_rapat').val(data.peserta_rapat);
-            document.getElementById("sifat_rapat").value = data.sifat_rapat;
+            $('#sifat_rapat').val(data.sifat_rapat);
             $("#button-create-rapat").addClass("d-none");
             $("#form-create-rapat").removeClass("d-none");
           }
@@ -216,12 +228,11 @@
 
     function setSifatRapat(){
       var value = $("#nama_rapat option:selected").val();
+      console.log(value);
       if(value == 'Paripurna'){
         document.getElementById("sifat_rapat").value = 1;
         document.getElementById("sifat_rapat").disabled = true;
       }else{
-        const ruangan_id = $('select[name=ruangan_id] option').filter(':selected').val()
-        document.getElementById("sifat_rapat").value = ruangan_id;
         document.getElementById("sifat_rapat").disabled = false;
       }
     }
@@ -299,7 +310,7 @@
             document.getElementById("waktu_rapat").value = time(data.waktu);
             $('#ruang_rapat').val(data.ruang_rapat);
             $('#peserta_rapat').val(data.peserta_rapat);
-            document.getElementById("sifat_rapat").value = data.sifat_rapat;
+            $('#sifat_rapat').val(data.sifat_rapat);
             $("#submit_rapat").addClass("d-none");
             $("#button-create-rapat").addClass("d-none");
             $("#form-create-rapat").removeClass("d-none");

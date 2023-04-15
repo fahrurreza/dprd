@@ -166,6 +166,12 @@ class RapatController extends Controller
 
     public function updateRapat(Request $request)
     {
+        if(!$request->sifat_rapat){
+            $sifat_rapat = 1;
+        }else{
+            $sifat_rapat = $request->sifat_rapat;
+        }
+        
         $cek_selesai = Rapat::where('id', $request->id)->first();
 
         if($cek_selesai->is_selesai == true){
@@ -181,7 +187,7 @@ class RapatController extends Controller
                         'acara_rapat'   => $request->acara_rapat,
                         'peserta_rapat' => $request->peserta_rapat,
                         'ruangan_id'    => $request->ruangan_id,
-                        'sifat_rapat'   => $request->sifat_rapat,
+                        'sifat_rapat'   => $sifat_rapat,
                         'waktu'         => $waktu,
                         'updated_at'    => now()
                     ]);
